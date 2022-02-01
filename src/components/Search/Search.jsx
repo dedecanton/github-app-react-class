@@ -1,6 +1,6 @@
 
 
-const Search = ({handleSearch}) => {
+const Search = ({handleSearch, isDisabled}) => {
   return (
     <div className="search">
       <input
@@ -9,6 +9,7 @@ const Search = ({handleSearch}) => {
         id=""
         placeholder="Digite o nome do usuário no GitHub"
         onKeyUp={handleSearch}
+        disabled={isDisabled}
       />
     </div>
   );
