@@ -20,7 +20,7 @@ class App extends Component {
     const ENTER = 13;
     if (keyCode === ENTER) {
       ajax()
-        .get(`https://api.github.com/users/${value}`)
+        .get(this.getGithubApiUrl(value))
         .then((result) => {
           this.setState({
             userInfo: {
@@ -31,6 +31,8 @@ class App extends Component {
               followers: result.followers,
               following: result.following,
             },
+            repos: [],
+            starred: [],
           });
 
           console.log(result);
@@ -38,12 +40,17 @@ class App extends Component {
     }
   }
 
+  getGithubApiUrl(username, type) {
+    const internaUsername = username ? `/${username}` : "";
+    const internalType = type ? `/${type}` : "";
+    return `https://api.github.com/users${internaUsername}${internalType}`;
+  }
+
   getRepos(type) {
     return (e) => {
+      const username = this.state.userInfo.login;
       ajax()
-        .get(
-          `https://api.github.com/users/${this.state.userInfo.login}/${type}`
-        )
+        .get(this.getGithubApiUrl(username, type))
         .then((result) => {
           this.setState({
             [type]: result.map((repo) => ({
