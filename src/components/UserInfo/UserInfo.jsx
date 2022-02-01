@@ -1,18 +1,21 @@
-const UserInfo = () => {
+import React from 'react';
+
+const UserInfo = ({userInfo}) => {
   return (
     <div className="user-info">
-      <img src="https://avatars.githubusercontent.com/u/67431433?v=4" alt="" />
+      <img src={userInfo.photo} alt="" />
       <h1>
-        <a href="https://api.github.com/dedecanton"></a> André Canton
+        <a target='_blank' rel='noreferrer' href={`https://github.com/${userInfo.login}`}>{userInfo.username}</a> 
       </h1>
 
       <div className="repos-info">
-        <li>Repositórios: 122</li>
-        <li>Seguidores: 10</li>
-        <li>Seguindo: 5</li>
+        <li>Repositórios: {userInfo.repos}</li>
+        <li>Seguidores: {userInfo.followers}</li>
+        <li>Seguindo: {userInfo.following}</li>
       </div>
     </div>
   );
 };
 
 export default UserInfo;
+

@@ -1,8 +1,8 @@
-const Actions = () => {
+const Actions = ({getRepos, getStarred}) => {
   return (
     <div className="actions">
-    <button>Ver repositórios</button>
-    <button>Ver favoritos</button>
+    <button onClick={getRepos}>Ver repositórios</button>
+    <button onClick={getStarred}>Ver favoritos</button>
   </div>
 
   );

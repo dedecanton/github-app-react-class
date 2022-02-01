@@ -3,34 +3,31 @@ import UserInfo from "../UserInfo";
 import Actions from "../Actions";
 import Repositories from "../Repositories/Repositories";
 
-const AppContent = () => {
+const AppContent = ({
+  userInfo,
+  repos,
+  starred,
+  handleSearch,
+  getRepos,
+  getStarred,
+}) => {
   return (
     <div className="app">
-      <Search />
-      <UserInfo />
-      <Actions />
+      <Search handleSearch={handleSearch} />
+      {!!userInfo && <UserInfo userInfo={userInfo} />}
+      {!!userInfo && <Actions getRepos={getRepos} getStarred={getStarred} />}
 
-      <Repositories
-        classname={"repos"}
-        title="Repositó rios:"
-        repos={[
-          {
-            name: "Nome do repositorio",
-            link: "https://www.google.com",
-          },
-        ]}
-      />
+      {!!repos.length && (
+        <Repositories classname={"repos"} title="Repositórios:" repos={repos} />
+      )}
 
-      <Repositories
-        classname={"starred"}
-        title="Favoritos:"
-        repos={[
-          {
-            name: "Nome do repositorio",
-            link: "https://www.google.com",
-          },
-        ]}
-      />
+      {!!starred.length && (
+        <Repositories
+          classname={"starred"}
+          title="Favoritos:"
+          repos={starred}
+        />
+      )}
     </div>
   );
 };

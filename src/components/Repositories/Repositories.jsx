@@ -7,8 +7,8 @@ const Repositories = ({classname,title, repos}) => {
       <ul>
         <h2>{title}</h2>
 
-        {repos.map((repo,index) => (
-          <li key={index}><a href={repo.link}>{repo.name}</a></li>
+        {repos.map((repo) => (
+          <li key={repo.id}><a href={repo.link}>{repo.name}</a></li>
         ))}
       </ul>
     </div>
